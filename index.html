@@ -7,12 +7,9 @@
     </head>
 
     <body style= "background-color: #2E2E2E;">
-        <h1 id ="titulo"
-        style="color: #EDEDED;" >
-            Calculadora da Liciene
-        </h1>
+        <h1 id ="titulo"></h1>
 
-        <p id="result" color="#eee"></p>
+        <p id="result"></p>
 
         <table>
             <button class="number" onclick="insert('7')">7</button>
@@ -36,33 +33,7 @@
             <button class="operator" onclick="calculate()">=</button>
             <button class="operator" onclick="insert('+')">+</button>
         </table>
-        <script>
-            const insert = (num) => {
-                let number = document.getElementById('result').innerHTML;
-                document.getElementById('result').innerHTML = number + num;
-            }
-
-            const calculate = () => {
-                let result = document.getElementById('result').innerHTML;
-                if(result) {
-                    document.getElementById('result').innerHTML = eval(result)
-                } else {
-                    document.getElementById('result') = '0'
-                }
-            }
-
-        document.addEventListener('keydown', (event) => {
-            const key = event.key;
-            if(/[0-9.]/.test(key)) {
-                insert(key);
-            } else if (key === '+' || key === '-' || key === '*' || key === '/') {
-                insert(' ' + key + ' ');
-            } else if (key === 'Enter') {
-                calculate();
-            }
-        });
-
-        </script>
+        <script  src="script.js"></script>
 
     </body>
 
