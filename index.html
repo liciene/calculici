@@ -12,46 +12,55 @@
             Calculadora da Liciene
         </h1>
 
-        <input id="a" type="number" placeholder="Number 1" />
-        <input id="b" type="number" placeholder="Number 2" />
+        <p id="result" color="#eee"></p>
 
-        <br><br>
+        <table>
+            <button class="number" onclick="insert('7')">7</button>
+            <button class="number" onclick="insert('8')">8</button>
+            <button class="number" onclick="insert('9')">9</button>
+            <button class="operator" onclick="insert('/')">÷</button>
 
-        <button id="addButton">+</button>
-        <button id="subtractButton">–</button>
-        <button id="multiplyButton">×</button>
-        <button id="divideButton">÷</button>
-
-        <br><br>
-
-        <input id="result" type="text" placeholder="Result" />
-
+            <br><br>
+            <button class="number" onclick="insert('4')">4</button>
+            <button class="number" onclick="insert('5')">5</button>
+            <button class="number" onclick="insert('6')">6</button>
+            <button class="operator" onclick="insert('*')">×</button>
+            <br><br>
+            <button class="number" onclick="insert('1')">1</button>
+            <button class="number" onclick="insert('2')">2</button>
+            <button class="number" onclick="insert('3')">3</button>
+            <button class="operator" onclick="insert('-')">–</button>
+            <br><br>
+            <button class="number" onclick="insert('0')">0</button>   
+            <button class="decimal" onclick="insert('.')">.</button>   
+            <button class="operator" onclick="calculate()">=</button>
+            <button class="operator" onclick="insert('+')">+</button>
+        </table>
         <script>
+            const insert = (num) => {
+                let number = document.getElementById('result').innerHTML;
+                document.getElementById('result').innerHTML = number + num;
+            }
 
-            const num1 = document.getElementById('a');
-            const num2 = document.getElementById('b');
-            const result = document.getElementById('result');
+            const calculate = () => {
+                let result = document.getElementById('result').innerHTML;
+                if(result) {
+                    document.getElementById('result').innerHTML = eval(result)
+                } else {
+                    document.getElementById('result') = '0'
+                }
+            }
 
-            const add = () => {
-                result.value = Number(num1.value) + Number(num2.value);
-            };
-
-            const subtract = () => {
-                result.value = Number(num1.value) - Number(num2.value);
-            };
-
-            const multiply = () => {
-                result.value = Number(num1.value) * Number(num2.value);
-            };
-
-            const divide = () => {
-                result.value = Number(num1.value) / Number(num2.value);
-            };
-
-            document.getElementById('addButton').addEventListener('click', add);
-            document.getElementById('subtractButton').addEventListener('click', subtract);
-            document.getElementById('multiplyButton').addEventListener('click', multiply);
-            document.getElementById('divideButton').addEventListener('click', divide);
+        document.addEventListener('keydown', (event) => {
+            const key = event.key;
+            if(/[0-9.]/.test(key)) {
+                insert(key);
+            } else if (key === '+' || key === '-' || key === '*' || key === '/') {
+                insert(' ' + key + ' ');
+            } else if (key === 'Enter') {
+                calculate();
+            }
+        });
 
         </script>
 
